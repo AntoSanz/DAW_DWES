@@ -77,7 +77,28 @@ function mostrarAlumnos()
 // Borrar al alumno con el DNI especificado
 function borrarAlumnoPorDni($dni)
 {
+    $archivo = 'alumnos.txt';
+    $lineas = file($archivo, FILE_IGNORE_NEW_LINES);
+    $nuevasLineas = [];
+    $borrado = false;
 
+    foreach ($lineas as $linea) {
+        $alumno = explode(' ', $linea);
+        if ($alumno[0] == $dni) {
+            $borrado = true;
+        } else {
+            $nuevasLineas[] = $linea;
+        }
+    }
+
+    if ($borrado) {
+        file_put_contents($archivo, implode(PHP_EOL, $nuevasLineas));
+        $nuevaLinea = "";
+        file_put_contents($archivo, $nuevaLinea . PHP_EOL, FILE_APPEND);
+        echo "Alumno con DNI $dni eliminado correctamente. </br>";
+    } else {
+        echo "No se encontró ningún alumno con el DNI $dni. </br>";
+    }
     showBackButton();
 }
 
