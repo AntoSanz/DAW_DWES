@@ -51,7 +51,25 @@ function guardarAlumno($dni, $nombre, $apellido1, $apellido2, $telefono)
 // Mostrar los alumnos en una tabla HTML
 function mostrarAlumnos()
 {
-
+    $archivo = 'alumnos.txt';
+    $lineas = file($archivo, FILE_IGNORE_NEW_LINES);
+    echo "<table border='1'>
+                                <tr>
+                                    <th>DNI</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido1</th>
+                                    <th>Apellido2</th>
+                                    <th>Telefono</th>
+                                </tr>";
+    foreach ($lineas as $linea) {
+        $alumno = explode(' ', $linea);
+        echo "<tr>";
+        foreach ($alumno as $dato) {
+            echo "<td>$dato</td>";
+        }
+        echo "</tr>";
+    }
+    echo "</table>";
 
     showBackButton();
 }
