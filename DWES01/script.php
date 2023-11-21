@@ -18,7 +18,33 @@ function showBackButton()
 //Si el alumno existe, no lo creará
 function guardarAlumno($dni, $nombre, $apellido1, $apellido2, $telefono)
 {
+    $archivo = 'alumnos.txt';
 
+    // Crear el archivo si no existe y no se ha creado en el inicio o se ha borrado una vez se ha iniciado la pagina
+    if (!file_exists($archivo)) {
+        crearArchivo();
+    }
+
+    if ($dni == "") {
+        echo "Introduce el DNI.</br>";
+        showBackButton();
+        return;
+    }
+    //Recorrer el archivo para comprobar si el alumno existe
+    $lineas = file($archivo, FILE_IGNORE_NEW_LINES);
+    foreach ($lineas as $linea) {
+        $alumnoExistente = explode(' ', $linea);
+        if ($alumnoExistente[0] == $dni) {
+            echo "El alumno con DNI $dni ya existe. </br>";
+            showBackButton();
+            return;
+        }
+    }
+
+    // Guardar el nuevo alumno en el archivo
+    $nuevaLinea = "$dni $nombre $apellido1 $apellido2 $telefono";
+    file_put_contents($archivo, $nuevaLinea . PHP_EOL, FILE_APPEND);
+    echo "Alumno guardado correctamente. </br>";
     showBackButton();
 }
 
