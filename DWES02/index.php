@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 
 <head>
     <title>Practica 2 DWES - Antonio Sanz Pans</title>
@@ -37,4 +38,5 @@
         </fieldset>
     </form>
 </body>
+
 </html>

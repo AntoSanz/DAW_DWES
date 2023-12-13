@@ -1,0 +1,20 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.field {
+    display: flex;
+    padding: 1px 5px;
+}
+
+.button-box {
+    padding-top: 10px;
+}
+
+legend{
+    font-weight: bold;
+
+}
+label {
+    width: 100px;
+}

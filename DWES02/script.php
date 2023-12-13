@@ -74,7 +74,7 @@ function mostrarAlumnos()
     showBackButton();
 }
 
-    // Borrar al alumno con el DNI especificado
+// Borrar al alumno con el DNI especificado
 function borrarAlumnoPorDni($dni)
 {
     $archivo = 'alumnos.txt';
