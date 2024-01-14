@@ -11,5 +11,19 @@ if ($error != null) {
     die();
 }
 
+//3.1.2.- Ejecución de consultas.
+if ($error === null) {
+    //DELETE
+    $result = $connect->query('DELETE FROM stock WHERE unidades=0');
+    if ($result) {
+        echo "<p>Se han borrado $connect->affected_rows registros.</p>";
+    }
+    //SELECT
+    $result = $connect->query('SELECT producto, unidades FROM stock', MYSQLI_USE_RESULT);
+}
+
+$result->free();
+
+
 //Finalizar conexion con BBDD
 $connect->close();
