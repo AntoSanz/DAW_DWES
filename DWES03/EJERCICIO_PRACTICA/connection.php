@@ -33,5 +33,21 @@ $connect->query('UPDATE stock SET unidades=3 WHERE producto="STYLUSSX515W"');
 
 $connect->commit();  // Confirma los cambios
 
+//3.1.4.- Obtención y utilización de conjuntos de resultados.
+$result = $connect->query('SELECT producto, unidades FROM stocks WHERE unidades<2');
+$stock = $result->fetch_array();  // Obtenemos el primer registro
+$producto = $stock['producto'];  // O también $stock[0];
+$unidades = $stock['unidades'];  // O también $stock[1];
+
+//Recorrer todos los registros. Cuandoi no haya mas devolverá null
+$result = $connect->query('SELECT producto, unidades FROM stocks WHERE unidades<2');
+$stock = $result->fetch_object();
+while ($stock != null) {
+    echo "<p>Producto $stock->producto: $stock->unidades unidades.</p>";
+    $stock = $resultado->fetch_object();
+}
+
+echo "<p>Producto $producto: $unidades unidades.</p>";
+
 //Finalizar conexion con BBDD
 $connect->close();
