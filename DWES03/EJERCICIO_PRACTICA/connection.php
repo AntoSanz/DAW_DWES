@@ -24,6 +24,14 @@ if ($error === null) {
 
 $result->free();
 
+//3.1.3.- Transacciones.
+// deshabilitamos el modo transaccional automático
+$connect->autocommit(false);
+
+$connect->query('DELETE FROM stock WHERE unidades=0');  // Inicia una transacción
+$connect->query('UPDATE stock SET unidades=3 WHERE producto="STYLUSSX515W"');
+
+$connect->commit();  // Confirma los cambios
 
 //Finalizar conexion con BBDD
 $connect->close();
