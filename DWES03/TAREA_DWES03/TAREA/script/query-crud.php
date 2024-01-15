@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Obtiene los datos de un producto proporcionandole el id
  */
-function getDataById($conn, $idProducto){
+function getDataById($conn, $idProducto)
+{
     //Inicializar las variables en null
     $id = $nombre = $nombreCorto = $descripcion = $pvp = $familia = null;
 
@@ -24,7 +26,7 @@ function getDataById($conn, $idProducto){
     );
 
     $stmt->close();
-    // Retornar el array
+    // Devolver el array
     return $data;
 }
 
@@ -65,7 +67,6 @@ function updateDataById($conn, $idProducto, $nombre, $nombrecorto, $descripcion,
         }
         // Cerrar el statement
         $stmt->close();
-
     } catch (Exception $e) {
         // Revertir la transacción en caso de excepción
         $conn->rollback();
@@ -78,4 +79,37 @@ function updateDataById($conn, $idProducto, $nombre, $nombrecorto, $descripcion,
  */
 function deleteDataById($conn, $idProducto)
 {
+    try {
+        $conn->autocommit(false);
+        // Preparar la consulta de eliminación
+        $query = "DELETE FROM productos WHERE id=?";
+        $stmt = $conn->prepare($query);
+        // Verificar si la preparación fue exitosa
+        if (!$stmt) {
+            throw new Exception("Error al preparar la consulta.");
+        }
+        // Enlazar parámetros
+        $stmt->bind_param('i', $idProducto);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Verificar si la eliminación fue exitosa
+        if ($stmt->affected_rows > 0) {
+            // Confirmar la transacción
+            $conn->commit();
+            echo "Registro eliminado.";
+        } else {
+            // Revertir la transacción en caso de fallo
+            $conn->rollback();
+            echo "No se realizó la eliminación. Es posible que el ID no exista.";
+        }
+
+        // Cerrar el statement
+        $stmt->close();
+    } catch (Exception $e) {
+         // Revertir la transacción en caso de excepción
+         $conn->rollback();
+         echo "Error: " . $e->getMessage();
+    }
 }
