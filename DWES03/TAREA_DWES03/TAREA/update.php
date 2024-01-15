@@ -3,6 +3,10 @@
 include './script/connection.php';
 include './script/query-crud.php';
 
+//Obtener las familias
+$conn = openConnection();
+$familias = getFamilias($conn);
+closeConnection($conn);
 
 //Obtener datos por el ID
 if (isset($_GET['id'])) {
@@ -67,9 +71,16 @@ if (isset($_POST['update'])) {
             <input type="text" class="form-control" id="pvp" aria-describedby="pvp" name="pvp" value="<?php echo $result['pvp']; ?>">
         </div>
         <div class="mb-3">
-            <label for="familia" class="form-label">Familia</label>
-            <input type="text" class="form-control" id="familia" aria-describedby="familia" name="familia" value="<?php echo $result['familia']; ?>">
-        </div>
+        <label for="selectFamilias" class="form-label">Familia:</label>
+        <select class="form-select" id="selectFamilias" name="familia">
+            <?php
+            // Iterar sobre el array de familias para construir las opciones del dropdown
+            foreach ($familias as $familia) {
+                echo '<option value="' . $familia['cod'] . '">' . $familia['nombre'] . '</option>';
+            }
+            ?>
+        </select>
+    </div>
         <button type="submit" name="update" class="btn btn-warning">Actualizar</button>
         <a href="listado.php"><button type="button" class="btn btn-p btn-primary ">Volver</button></a>
     </form>

@@ -2,10 +2,13 @@
 include "./script/connection.php";
 include "./script/query-crud.php";
 
-
+//Obtener las familias
+$conn = openConnection();
+$familias = getFamilias($conn);
+closeConnection($conn);
 
 //Funcionalidad de los botones
-if (isset($_POST['guardar'])) {
+if (isset($_POST['save'])) {
     //Recoger datos
     // Verifica si se ha enviado el formulario
     // Recupera los valores de los campos y almacénalos en variables
@@ -54,10 +57,19 @@ if (isset($_POST['guardar'])) {
         <input type="text" class="form-control" id="pvp" aria-describedby="pvp" name="pvp">
     </div>
     <div class="mb-3">
-        <label for="familia" class="form-label">Familia</label>
-        <input type="text" class="form-control" id="familia" aria-describedby="familia" name="familia">
+        <!-- <label for="familia" class="form-label">Familia</label>
+        <input type="text" class="form-control" id="familia" aria-describedby="familia" name="familia"> -->
+        <label for="selectFamilias" class="form-label">Familia:</label>
+        <select class="form-select" id="selectFamilias" name="familia">
+            <?php
+            // Iterar sobre el array de familias para construir las opciones del dropdown
+            foreach ($familias as $familia) {
+                echo '<option value="' . $familia['cod'] . '">' . $familia['nombre'] . '</option>';
+            }
+            ?>
+        </select>
     </div>
-    <button type="submit" name="guardar" class="btn btn-primary">Guardar</button>
+    <button type="submit" name="save" class="btn btn-primary">Guardar</button>
 </form>
 </body>
 
