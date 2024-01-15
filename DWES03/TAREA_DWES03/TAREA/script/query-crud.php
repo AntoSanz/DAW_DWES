@@ -1,6 +1,6 @@
 <?php
 function getDataById($conn, $idProducto){
-    //Inicializamos las variables en null
+    //Inicializar las variables en null
     $id = $nombre = $nombreCorto = $descripcion = $pvp = $familia = null;
 
     $stmt = $conn->stmt_init();
@@ -17,9 +17,10 @@ function getDataById($conn, $idProducto){
         'nombreCorto' => $nombreCorto,
         'descripcion' => $descripcion,
         'pvp' => $pvp,
-        'familia' => $familia
+        'familia' => $familia,
     );
 
+    $stmt->close();
     // Retornar el array
     return $data;
 }

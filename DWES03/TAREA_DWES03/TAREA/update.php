@@ -2,20 +2,15 @@
 //Establecer conexion
 include './script/connection.php';
 include './script/query-crud.php';
-$conn = openConnection();
+
 
 //Obtener datos por el ID
 if (isset($_GET['id'])) {
     $idProducto = $_GET['id'];
-    // $stmt = $conn->stmt_init();
-    // $stmt->prepare('SELECT id, nombre, nombre_corto, descripcion, pvp, familia FROM productos WHERE id=?');
-    // $stmt->bind_param('i', $idProducto);
-    // $stmt->execute();
-    // $stmt->bind_result($id, $nombre, $nombreCorto, $descripcion, $pvp, $familia);
-    // $stmt->fetch();
+    $conn = openConnection();
     $result = getDataById($conn, $idProducto);
+    closeConnection($conn);
 }
-closeConnection($conn);
 
 // Verificar si se ha enviado el formulario para actualizar
 if (isset($_POST['update'])) {

@@ -1,58 +1,48 @@
 <?php
 //Establecer conexion
 include './script/connection.php';
-$conn = openConnection();
-
+include './script/query-crud.php';
 try {
     // Verifica si se ha proporcionado un ID en la URL
-    if (isset($_GET['id'])) {
-        // Obtiene el ID de la URL
-        $idProducto = $_GET['id'];
 
-        // Obtener los datos del producto con su ID
-        $stmt = $conn->stmt_init();
-        $stmt->prepare('SELECT id, nombre, nombre_corto, descripcion, pvp, familia FROM productos WHERE id=?');
-        $stmt->bind_param('i', $idProducto);
-        $stmt->execute();
-        $stmt->bind_result($id, $nombre, $nombreCorto, $descripcion, $pvp, $familia);
+
+    if (isset($_GET['id'])) {
+
+        $idProducto = $_GET['id'];
+        $conn = openConnection();
+        $result = getDataById($conn, $idProducto);
+        closeConnection($conn);
 
         // Verificar si hay resultados
-        if ($stmt->fetch()) {
             echo '
-            <div class="card" id="card-'. $id .'" style="width: 30rem;">
+            <div class="card" id="card-'. $result['id'] .'" style="width: 30rem;">
                 <div class="card-body">
-                    <h5 class="card-title">'. $nombre .'</h5>
+                    <h5 class="card-title">'. $result['nombre'] .'</h5>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                     <h6>Nombre corto</h6> 
-                    <p>'. $nombreCorto .'</p>
+                    <p>'. $result['nombreCorto'] .'</p>
                     </li>
                     <li class="list-group-item">
                     <h6>Familia</h6> 
-                    <p>'. $familia .'</p>
+                    <p>'. $result['familia'] .'</p>
                     </li>
                     <li class="list-group-item">
                     <h6>PVP</h6> 
-                    <p>'. $pvp .'€</p>
+                    <p>'. $result['pvp'] .'€</p>
                     </li>
                     <li class="list-group-item">
                     <h6>Descripción</h6>
-                    <p>'. $descripcion .'</p>
+                    <p>'. $result['descripcion'] .'</p>
                     </li>
                 </ul>
                 <div class="card-body">
                     <a href="./listado.php" class="card-link">Volver</a> 
-                    <a href="./update.php?id='. $id .'" class="card-link">Editar</a>  
+                    <a href="./update.php?id='. $result['id'] .'" class="card-link">Editar</a>  
                 </div>
             </div>
             ';
-        } else {
-            // Si no hay resultados, lanzar una excepción
-            throw new Exception("No se encontraron detalles para el ID proporcionado.");
-        }
-
-        $stmt->close();
     } else {
         // Si no se proporcionó un ID, lanzar una excepción
         throw new Exception("Error: ID no proporcionado.");
@@ -61,8 +51,6 @@ try {
     // Manejar la excepción
     echo 'Error: ' . $e->getMessage();
 }
-
-closeConnection($conn);
 ?>
 
 
