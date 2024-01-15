@@ -1,13 +1,35 @@
 <?php
-// include './connection.php';
+function getDataById($conn, $idProducto){
+    //Inicializamos las variables en null
+    $id = $nombre = $nombreCorto = $descripcion = $pvp = $familia = null;
 
-function createData($nombre, $nombrecorto, $descripcion, $pvp, $familia)
+    $stmt = $conn->stmt_init();
+    $stmt->prepare('SELECT id, nombre, nombre_corto, descripcion, pvp, familia FROM productos WHERE id=?');
+    $stmt->bind_param('i', $idProducto);
+    $stmt->execute();
+    $stmt->bind_result($id, $nombre, $nombreCorto, $descripcion, $pvp, $familia);
+    $stmt->fetch();
+
+    // Crear un array asociativo con los valores obtenidos
+    $data = array(
+        'id' => $id,
+        'nombre' => $nombre,
+        'nombreCorto' => $nombreCorto,
+        'descripcion' => $descripcion,
+        'pvp' => $pvp,
+        'familia' => $familia
+    );
+
+    // Retornar el array
+    return $data;
+}
+
+function createData($conn, $nombre, $nombrecorto, $descripcion, $pvp, $familia)
 {
 }
 
 function updateDataById($conn, $idProducto, $nombre, $nombrecorto, $descripcion, $pvp, $familia)
 {
-    // $conn = openConnection();
     try {
         $conn->autocommit(false);
         $query = "UPDATE productos SET nombre=?, nombre_corto=?, descripcion=?, pvp=?, familia=? WHERE id=?";
@@ -41,6 +63,6 @@ function updateDataById($conn, $idProducto, $nombre, $nombrecorto, $descripcion,
 }
 
 
-function deleteDataById($idProducto)
+function deleteDataById($conn, $idProducto)
 {
 }
