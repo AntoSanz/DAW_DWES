@@ -1,5 +1,5 @@
 <?php
-    include './script/conection.php';
+    include './script/connection.php';
     $conn = openConnection();
 ?>
 <!DOCTYPE html>

@@ -1,6 +1,6 @@
 <?php
 //Establecer conexion
-include './script/conection.php';
+include './script/connection.php';
 $conn = openConnection();
 
 try {

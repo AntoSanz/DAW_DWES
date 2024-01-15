@@ -12,7 +12,7 @@
     <title>Tarea Tema 3: Crear</title>
 </head>
 
-<form id="form-create" action="./script/create-data.php" method="post">
+<form id="form-create" action="./script/save-data.php" method="post">
     <div class="mb-3">
         <label for="nombre" class="form-label">Nombre del producto</label>
         <input type="text" class="form-control" id="nombre" aria-describedby="nombre" name="nombre">

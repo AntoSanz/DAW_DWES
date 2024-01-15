@@ -6,6 +6,6 @@ body {
     margin: 1rem;
 }
 
-#form-create {
+#form-create, #form-update {
     margin: 1rem;
 }
