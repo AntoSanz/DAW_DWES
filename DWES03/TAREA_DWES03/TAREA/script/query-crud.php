@@ -36,6 +36,26 @@ function getDataById($conn, $idProducto)
  */
 function createData($conn, $nombre, $nombrecorto, $descripcion, $pvp, $familia)
 {
+    try {
+        $query = 'INSERT INTO productos (nombre, nombre_corto, descripcion, pvp, familia) VALUES (?, ?, ?, ?, ?)';
+        $stmt = $conn->prepare($query);
+        // Verificar si la preparación fue exitosa
+        if (!$stmt) {
+            throw new Exception("Error al preparar la consulta.");
+        }
+        // Enlazar parámetros
+        $stmt->bind_param('sssis', $nombre, $nombrecorto, $descripcion, $pvp, $familia);
+        $stmt->execute();
+        if ($stmt->affected_rows > 0) {
+            displaySuccessMessage("Registro guardado");
+
+        } else {
+            throw new Exception("No se pudo insertar el registro.");
+        }
+        $stmt->close();
+    } catch (Exception $e) {
+        displayErrorMessage("Error: " . $e->getMessage());
+    }
 }
 
 /**
@@ -59,18 +79,18 @@ function updateDataById($conn, $idProducto, $nombre, $nombrecorto, $descripcion,
         if ($stmt->affected_rows > 0) {
             // Confirmar la transacción
             $conn->commit();
-            echo "Actualización exitosa.";
+            displaySuccessMessage("Registro actualizado");
         } else {
             // Revertir la transacción en caso de fallo
             $conn->rollback();
-            echo "No se realizaron cambios.";
+            displayErrorMessage("No se realizaron cambios.");
         }
         // Cerrar el statement
         $stmt->close();
     } catch (Exception $e) {
         // Revertir la transacción en caso de excepción
         $conn->rollback();
-        echo "Error: " . $e->getMessage();
+        displayErrorMessage("Error: " . $e->getMessage());
     }
 }
 
@@ -98,18 +118,31 @@ function deleteDataById($conn, $idProducto)
         if ($stmt->affected_rows > 0) {
             // Confirmar la transacción
             $conn->commit();
-            echo "Registro eliminado.";
+            displaySuccessMessage("Registro eliminado");
         } else {
             // Revertir la transacción en caso de fallo
             $conn->rollback();
-            echo "No se realizó la eliminación. Es posible que el ID no exista.";
+            displayErrorMessage("No se realizaron cambios.");
         }
 
         // Cerrar el statement
         $stmt->close();
     } catch (Exception $e) {
-         // Revertir la transacción en caso de excepción
-         $conn->rollback();
-         echo "Error: " . $e->getMessage();
+        // Revertir la transacción en caso de excepción
+        $conn->rollback();
+        displayErrorMessage("Error: " . $e->getMessage());
     }
+}
+
+function displaySuccessMessage($message)
+{
+    echo '<script type="text/javascript">
+            alert("' . $message . '");
+            window.location.href="listado.php";
+        </script>';
+}
+
+function displayErrorMessage($message)
+{
+    echo $message;
 }

@@ -1,10 +1,34 @@
+<?php
+include "./script/connection.php";
+include "./script/query-crud.php";
+
+
+
+//Funcionalidad de los botones
+if (isset($_POST['guardar'])) {
+    //Recoger datos
+    // Verifica si se ha enviado el formulario
+    // Recupera los valores de los campos y almacénalos en variables
+    $nombre = $_POST["nombre"];
+    $nombrecorto = $_POST["nombrecorto"];
+    $descripcion = $_POST["descripcion"];
+    $pvp = $_POST["pvp"];
+    $familia = $_POST["familia"];
+
+    //Boton de guardar presionado
+    $conn = openConnection();
+    createData($conn, $nombre, $nombrecorto, $descripcion, $pvp, $familia);
+    closeConnection($conn);
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="bootstrap-5.3.2/css/bootstrap.min.css" />
     <script src="bootstrap-5.3.2/js/bootstrap.bundle.min.js"></script>
@@ -12,7 +36,7 @@
     <title>Tarea Tema 3: Crear</title>
 </head>
 
-<form id="form-create" action="./script/save-data.php" method="post">
+<form id="form-create" action="" method="post">
     <div class="mb-3">
         <label for="nombre" class="form-label">Nombre del producto</label>
         <input type="text" class="form-control" id="nombre" aria-describedby="nombre" name="nombre">
@@ -33,7 +57,7 @@
         <label for="familia" class="form-label">Familia</label>
         <input type="text" class="form-control" id="familia" aria-describedby="familia" name="familia">
     </div>
-    <button type="submit" name="guardar" class="btn btn-primary">Submit</button>
+    <button type="submit" name="guardar" class="btn btn-primary">Guardar</button>
 </form>
 </body>
 
