@@ -1,4 +1,24 @@
 <?php
+/**
+ * Obtiene todos los registros de una base de datos
+ */
+function getFamilias($conn) {
+    $stmt = $conn->stmt_init();
+    $stmt->prepare('SELECT cod, nombre FROM familias');
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Inicializar un array para almacenar los resultados
+    $familias = array();
+
+    // Iterar sobre los resultados y almacenar en el array
+    while ($row = $result->fetch_assoc()) {
+        $familias[] = $row;
+    }
+
+    // Retornar el array con los resultados
+    return $familias;
+}
 
 /**
  * Obtiene los datos de un producto proporcionandole el id
@@ -32,7 +52,6 @@ function getDataById($conn, $idProducto)
 
 /**
  * Crea un nuevo registro en la BBDD de productos
- 
  */
 function createData($conn, $nombre, $nombrecorto, $descripcion, $pvp, $familia)
 {
