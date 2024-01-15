@@ -1,4 +1,7 @@
 <?php
+/**
+ * Obtiene los datos de un producto proporcionandole el id
+ */
 function getDataById($conn, $idProducto){
     //Inicializar las variables en null
     $id = $nombre = $nombreCorto = $descripcion = $pvp = $familia = null;
@@ -25,10 +28,17 @@ function getDataById($conn, $idProducto){
     return $data;
 }
 
+/**
+ * Crea un nuevo registro en la BBDD de productos
+ 
+ */
 function createData($conn, $nombre, $nombrecorto, $descripcion, $pvp, $familia)
 {
 }
 
+/**
+ * Actualiza un registro de la base de datos de productos
+ */
 function updateDataById($conn, $idProducto, $nombre, $nombrecorto, $descripcion, $pvp, $familia)
 {
     try {
@@ -63,7 +73,9 @@ function updateDataById($conn, $idProducto, $nombre, $nombrecorto, $descripcion,
     }
 }
 
-
+/**
+ * Borra un registro de la BBDD de productos proporcionandole un ID
+ */
 function deleteDataById($conn, $idProducto)
 {
 }
