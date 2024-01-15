@@ -10,27 +10,27 @@ try {
         $conn = openConnection();
         $result = getDataById($conn, $idProducto);
         closeConnection($conn);
-            echo '
-            <div class="card" id="card-'. $result['id'] .'" style="width: 30rem;">
+        echo '
+            <div class="card" id="card-' . $result['id'] . '" style="width: 30rem;">
                 <div class="card-body">
-                    <h5 class="card-title">'. $result['nombre'] .'</h5>
+                    <h5 class="card-title">' . $result['nombre'] . '</h5>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                     <h6>Nombre corto</h6> 
-                    <p>'. $result['nombreCorto'] .'</p>
+                    <p>' . $result['nombreCorto'] . '</p>
                     </li>
                     <li class="list-group-item">
                     <h6>Familia</h6> 
-                    <p>'. $result['familia'] .'</p>
+                    <p>' . $result['familia'] . '</p>
                     </li>
                     <li class="list-group-item">
                     <h6>PVP</h6> 
-                    <p>'. $result['pvp'] .'€</p>
+                    <p>' . $result['pvp'] . '€</p>
                     </li>
                     <li class="list-group-item">
                     <h6>Descripción</h6>
-                    <p>'. $result['descripcion'] .'</p>
+                    <p>' . $result['descripcion'] . '</p>
                     </li>
                 </ul>
                 <div class="card-body">
@@ -60,8 +60,6 @@ if (isset($_POST['delete'])) {
     deleteDataById($conn, $idProducto, $nombre, $nombrecorto, $descripcion, $pvp, $familia);
     closeConnection($conn);
     // Redireccionar a listado.php
-    header("Location: ./listado.php");
-    exit(); // Asegurar que el script se detenga después de la redirección
 }
 ?>
 
