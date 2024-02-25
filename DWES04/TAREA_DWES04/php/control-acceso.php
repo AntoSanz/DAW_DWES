@@ -28,7 +28,7 @@ function registrarIntento($username, $password, $resultado) {
     // Ejecutar la consulta
     $stmt->execute();
 
-    // Cerrar la conexión y liberar recursos
+    // Cerrar la conexión
     $stmt->close();
     $conn->close();
 }
@@ -61,7 +61,7 @@ function usuarioBloqueado($username) {
     $row = $result->fetch_assoc();
     $num_intentos = $row['num_intentos'];
 
-    // Cerrar la conexión y liberar recursos
+    // Cerrar la conexión
     $stmt->close();
     $conn->close();
 
