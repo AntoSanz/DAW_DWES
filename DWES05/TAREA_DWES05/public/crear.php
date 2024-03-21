@@ -2,22 +2,20 @@
 <html lang="es">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../bootstrap-5.3.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <script src="../bootstrap-5.3.2/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../styles/styles.css" />
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="../bootstrap-5.3.2/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../styles/styles.css" />
-        <script src="../bootstrap-5.3.2/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="../styles/styles.css" />
-
-        <title>Tarea Tema 5: CRUD</title>
-    </head>
+    <title>Tarea Tema 5: Crear usuario</title>
+</head>
 
 <body>
     <div class="form-box">
-        <form>
+        <form action="crear_usuario.php" method="post">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="dni" placeholder="">
                 <label for="dni">DNI</label>
@@ -43,7 +41,7 @@
                 <label for="telefono">Telefono</label>
             </div>
             <div class="d-grid gap-2 col-4 mx-auto">
-                <button class="btn btn-primary" type="button">Button</button>
+                <button class="btn btn-primary" type="submit">Button</button>
             </div>
         </form>
     </div>
