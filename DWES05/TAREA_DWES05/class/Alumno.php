@@ -18,8 +18,64 @@ class Alumno extends DB{
         parent::__construct($base);
     }
     public function __destruct() {
-        
+        // Cerrar la conexión a la base de datos al destruir el objeto
+        parent::Cerrar();
     }
+
+        // Métodos getter y setter para el atributo $dni
+        public function getDni() {
+            return $this->dni;
+        }
+        
+        public function setDni($dni) {
+            $this->dni = $dni;
+        }
+        
+        // Métodos getter y setter para el atributo $nombre
+        public function getNombre() {
+            return $this->nombre;
+        }
+        
+        public function setNombre($nombre) {
+            $this->nombre = $nombre;
+        }
+        
+        // Métodos getter y setter para el atributo $apellido1
+        public function getApellido1() {
+            return $this->apellido1;
+        }
+        
+        public function setApellido1($apellido1) {
+            $this->apellido1 = $apellido1;
+        }
+        
+        // Métodos getter y setter para el atributo $apellido2
+        public function getApellido2() {
+            return $this->apellido2;
+        }
+        
+        public function setApellido2($apellido2) {
+            $this->apellido2 = $apellido2;
+        }
+        
+        // Métodos getter y setter para el atributo $edad
+        public function getEdad() {
+            return $this->edad;
+        }
+        
+        public function setEdad($edad) {
+            $this->edad = $edad;
+        }
+        
+        // Métodos getter y setter para el atributo $telefono
+        public function getTelefono() {
+            return $this->telefono;
+        }
+        
+        public function setTelefono($telefono) {
+            $this->telefono = $telefono;
+        }
+
     //Consultas DB
     // 	* Listar. Que listará todos los registros de la tabla alumnos.
     public function getAlumnosList(){
@@ -42,10 +98,9 @@ class Alumno extends DB{
 	public function createAlumno($dni, $nombre, $apellido1, $apellido2, $edad, $telefono)
 	{
         // Definir la consulta SQL
-        $query = "INSERT INTO Alumnos (Dni, Nombre, Apellido1, Apellido2, Edad, Telefono) VALUES (?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO Alumnos (Dni, Nombre, Apellido1, Apellido2, Edad, Telefono) VALUES (:dni, :nombre, :apellido1, :apellido2, :edad, :telefono)";
         // Preparar la consulta SQL utilizando PDO
         $stmt = $this->con->prepare($query);
-        $stmt->execute([$dni, $nombre, $apellido1, $apellido2, $edad, $telefono]);
         try {
             // Ejecutar la consulta preparada, pasando los valores de los parámetros
             $stmt->execute([
