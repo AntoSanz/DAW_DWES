@@ -45,6 +45,8 @@
                 </div>
                 <div class="d-grid gap-2 col-4 mx-auto">
                     <button class="btn btn-primary" type="submit">Crear</button>
+                    <a href="listado.php" class="btn btn-secondary">Cancelar</a>
+
                 </div>
             </form>
         </div>

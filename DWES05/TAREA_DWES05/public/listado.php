@@ -59,7 +59,7 @@ $alumnosList = $alumno->getAlumnosList();
                                 <td><?php echo $alumno['Telefono']; ?></td>
                                 <td>
                                     <a href="detalle.php?dni=<?php echo $alumno['Dni']; ?>" class="btn btn-primary btn-sm"><i class="bi bi-info-circle-fill"></i> Detalle</a>
-                                    <a href="update.php?dni=<?php echo $alumno['Dni']; ?>" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i> Editar</a>
+                                    <a href="editar.php?dni=<?php echo $alumno['Dni']; ?>" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i> Editar</a>
                                     <a href="borrar.php?dni=<?php echo $alumno['Dni']; ?>" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i> Borrar</a>
                                 </td>
                             </tr>
