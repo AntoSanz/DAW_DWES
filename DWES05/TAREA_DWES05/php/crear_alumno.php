@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Llamar al método createAlumno() para crear un nuevo usuario en la base de datos
     $alumno->createAlumno($dni, $nombre, $apellido1, $apellido2, $edad, $telefono);
     
-    echo "Redirigiendo al listado...";
+    echo "<p></p>Redirigiendo al listado...</p>";
     header("refresh:3;url=../public/listado.php");
 }
 ?>

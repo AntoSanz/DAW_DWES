@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Redirigir a la página de listado después de borrar el alumno
         // header("Location: ../public/listado.php");
-        echo "Redirigiendo al listado...";
+        echo "<p></p>Redirigiendo al listado...</p>";
         header("refresh:3;url=../public/listado.php");
 
         exit();
