@@ -1,0 +1,10 @@
+body{
+    margin: 1rem;
+}
+.form-box{
+    margin: 0 20rem;
+    /* border: 1px solid black; */
+}
+.form-box form {
+    margin: 5rem;
+}
