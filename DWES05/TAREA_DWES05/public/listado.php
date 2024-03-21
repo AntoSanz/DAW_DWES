@@ -22,9 +22,9 @@ $alumnosList = $alumno->getAlumnosList();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Alumnos</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons CSS -->
+    <link href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -35,7 +35,7 @@ $alumnosList = $alumno->getAlumnosList();
         <div class="row">
             <div class="col-md-12">
                 <h2>Listado de Alumnos</h2>
-                <a href="crear.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Añadir Alumno</a>
+                <a href="crear.php" class="btn btn-primary mb-3"><i class="bi bi-plus"></i> Añadir Alumno</a>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -58,9 +58,9 @@ $alumnosList = $alumno->getAlumnosList();
                                 <td><?php echo $alumno['Edad']; ?></td>
                                 <td><?php echo $alumno['Telefono']; ?></td>
                                 <td>
-                                    <a href="detalle.php?id=<?php echo $alumno['Dni']; ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i> Detalle</a>
-                                    <a href="update.php?id=<?php echo $alumno['Dni']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Editar</a>
-                                    <a href="borrar.php?id=<?php echo $alumno['Dni']; ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Borrar</a>
+                                    <a href="detalle.php?dni=<?php echo $alumno['Dni']; ?>" class="btn btn-info btn-sm"><i class="bi bi-info-circle-fill"></i> Detalle</a>
+                                    <a href="update.php?dni=<?php echo $alumno['Dni']; ?>" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i> Editar</a>
+                                    <a href="borrar.php?dni=<?php echo $alumno['Dni']; ?>" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i> Borrar</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -71,9 +71,7 @@ $alumnosList = $alumno->getAlumnosList();
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Font Awesome -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
