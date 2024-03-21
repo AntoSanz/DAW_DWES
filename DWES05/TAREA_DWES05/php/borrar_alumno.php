@@ -1,6 +1,14 @@
 <?php
 // Incluir la clase Alumno
-require "../class/Alumno.php";
+// require "../class/Alumno.php";
+// Obtener todas las clases (incluida la clase DB)
+spl_autoload_register(function ($class) {
+    require "../class/" . $class . ".php";
+});
+
+// Crear la clase DB con el nombre de la base de datos correspondiente
+$bbddname = "daw_dwes_05";
+$DB = new DB($bbddname);
 
 // Verificar si se recibió la solicitud POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -16,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $alumno->deleteAlumno($dni_alumno);
 
         // Redirigir a la página de listado después de borrar el alumno
-        header("Location: listado.php");
+        header("Location: ../public/listado.php");
         exit();
     } else {
         // Mostrar un mensaje de error si no se recibió el DNI del alumno

@@ -24,7 +24,6 @@ require "../php/borrar_alumno.php";
             <div class="card-body">
                 <h5 class="card-title">Datos del Alumno</h5>
                 <p class="card-text">DNI: <?php echo $_GET['dni']; ?></p>
-                <!-- Aquí podrías mostrar más datos del alumno si los tienes disponibles en tu base de datos -->
             </div>
         </div>
 
