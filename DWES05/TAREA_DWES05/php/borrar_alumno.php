@@ -24,7 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $alumno->deleteAlumno($dni_alumno);
 
         // Redirigir a la página de listado después de borrar el alumno
-        header("Location: ../public/listado.php");
+        // header("Location: ../public/listado.php");
+        echo "Redirigiendo al listado...";
+        header("refresh:3;url=../public/listado.php");
+
         exit();
     } else {
         // Mostrar un mensaje de error si no se recibió el DNI del alumno

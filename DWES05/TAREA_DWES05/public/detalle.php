@@ -11,7 +11,6 @@
 
 <body>
     <div class="container mt-5">
-
         <div class="card mt-3">
             <div class="card-body">
                 <h2>Datos del alumno</h2>
