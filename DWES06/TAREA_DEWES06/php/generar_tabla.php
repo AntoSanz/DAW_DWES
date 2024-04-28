@@ -14,6 +14,6 @@ foreach ($inputData as $alumno) {
 $tableHTML .= '</tbody>';
 $tableHTML .= '</table>';
 
-// Devolver la tabla HTML generada como respuesta
+// Devolver la tabla HTML generada
 echo $tableHTML;
 ?>

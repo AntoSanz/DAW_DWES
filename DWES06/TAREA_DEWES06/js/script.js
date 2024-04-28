@@ -1,3 +1,7 @@
+/**
+ * addEventListener que recoge los cambios en el input
+ * Cada pulsacion de tecla envia un evento que genera una peticion AJAX en obtenerAlumnosBD
+ */
 document.addEventListener('DOMContentLoaded', function () {
     const inputField = document.getElementById('alumn-name');
 
@@ -6,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         obtenerAlumnosBD(inputValue)
             .then(res => {
-                debugger;
                 console.log(res);
                 //Aqui se obtiene el array de objetos que viene de base de datos.
                 //Se podría generar desde aqui la tabla con JS, pero para generarla con PHP hay que llamar a otra función que le pase los datos a PHP
@@ -18,6 +21,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+/**
+ * Genera una peticion AJAX que consulta la base de datos mediante el archivo ajax_connect de PHP
+ * Devuelve un array de objetos con la información de los alumnos filtrados
+ * @param {String} inputValue 
+ * @returns {Array} 
+ */
 function obtenerAlumnosBD(inputValue) {
     return new Promise((resolve, reject) => {
         // Crear una instancia de XMLHttpRequest
@@ -50,6 +59,11 @@ function obtenerAlumnosBD(inputValue) {
     });
 }
 
+/**
+ * Genera una petición de AJAX para transformar los datos de JS a PHP.
+ * Envía los datos al archivo generar_tabla.php para mostrarlos mediante PHP en pantalla de forma dinámica
+ * @param {Array} data 
+ */
 function enviarDatosPHP(data){
       // Crear una nueva solicitud AJAX
       let xhr = new XMLHttpRequest();
