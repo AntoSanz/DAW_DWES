@@ -20,6 +20,7 @@
             </div>
         </form>
     </div>
+    <div id="table-container" class="container-2"></div>
 
     <script src="./js/script.js"></script>
 
