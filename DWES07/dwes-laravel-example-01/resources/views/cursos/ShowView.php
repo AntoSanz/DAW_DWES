@@ -6,6 +6,6 @@
     <title>Show</title>
 </head>
 <body>
-    
+    <h1>Bienvenido al curso <?php echo $curso; ?></h1>
 </body>
 </html>

@@ -6,6 +6,6 @@
     <title>Create</title>
 </head>
 <body>
-    
+    <h1>En esta pagina podrás crear un curso</h1>
 </body>
 </html>
