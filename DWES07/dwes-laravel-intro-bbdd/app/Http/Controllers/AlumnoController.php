@@ -44,17 +44,12 @@ class AlumnoController extends Controller
 
     public function mostrarFormularioEditar($dni)
     {
-
-        // Aquí puedes implementar la lógica para mostrar el formulario de edición o realizar otras acciones
         $alumno = Alumno::find($dni);
-        // return $alumno;
         return view('alumnos.editarView', compact('alumno'));
     }
 
     public function actualizarAlumno(Alumno $alumno, Request $request)
     {
-        // return $alumno;
-        // return $request -> all();
         $alumno -> Dni = $request -> dni;
         $alumno -> Nombre = $request -> nombre;
         $alumno -> Apellido1 = $request -> apellido1;
