@@ -9,5 +9,6 @@ class Alumno extends Model
 {
     // use HasFactory;
     protected $table = 'alumnos'; // Nombre de la tabla en la base de datos
+    public $timestamps = false; // Deshabilitar el manejo automático de timestamps (Created_at y updated_at)
 
 }
