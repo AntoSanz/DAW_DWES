@@ -17,7 +17,7 @@ class CursoController extends Controller
     public function show($curso, $tema = null)
     {
         // return view('cursos.ShowView', ['curso' => $curso]);
-        return view('cursos.ShowView',compact('curso'));
+        return view('cursos.ShowView', compact('curso'));
 
         //Si a la ruta se le proporciona el tema, mostrará el primer mensaje
         //Si a la ruta no se le proporciona el tema, mostrará el segundo mensaje

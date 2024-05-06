@@ -30,16 +30,37 @@ class AlumnoController extends Controller
 
         //Crear el objeto alumno
         $alumno = new Alumno();
-        $alumno-> DNI = $request->dni;
-        $alumno-> Nombre = $request->nombre;
-        $alumno-> Apellido1 = $request->apellido1;
-        $alumno-> Apellido2 = $request->apellido2;
+        $alumno->DNI = $request->dni;
+        $alumno->Nombre = $request->nombre;
+        $alumno->Apellido1 = $request->apellido1;
+        $alumno->Apellido2 = $request->apellido2;
 
         //Guardar en la base de datos
-        $alumno -> save();
+        $alumno->save();
 
         // // Redirigir a una página de éxito o a otra vista
         return redirect('/alumnos/listar')->with('success', 'Alumno creado correctamente');
+    }
+
+    public function mostrarFormularioEditar($dni)
+    {
+
+        // Aquí puedes implementar la lógica para mostrar el formulario de edición o realizar otras acciones
+        $alumno = Alumno::find($dni);
+        // return $alumno;
+        return view('alumnos.editarView', compact('alumno'));
+    }
+
+    public function actualizarAlumno(Alumno $alumno, Request $request)
+    {
+        // return $alumno;
+        // return $request -> all();
+        $alumno -> Dni = $request -> dni;
+        $alumno -> Nombre = $request -> nombre;
+        $alumno -> Apellido1 = $request -> apellido1;
+        $alumno -> Apellido1 = $request -> apellido2;
+        $alumno->save();
+        return redirect('/alumnos/listar')->with('success', 'Alumno actualizado correctamente');
 
     }
 }
