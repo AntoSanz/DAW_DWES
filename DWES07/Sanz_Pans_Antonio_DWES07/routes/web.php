@@ -8,6 +8,7 @@ use App\Http\Controllers\AlumnoController;
 
 //Ruta con controlador
 Route::get('/', HomeController::class);
+Route::get('/welcome', HomeController::class);
 
 //Grupo de rutas
 Route::controller(CursoController::class)->group(function(){
