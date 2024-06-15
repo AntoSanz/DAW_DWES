@@ -5,16 +5,21 @@
 require_once 'DaoAlumnos.php';
 
 $base = "mayo";
+// Crear una nueva instancia de DaoAlumnos
 $dao = new DaoAlumnos($base);
+// Crear un array vacío para almacenar los alumnos seleccionados
 $selec = array();
-
+// Comprobar si se ha enviado el formulario y si se han seleccionado alumnos
 if (isset($_POST['Alumnos'])) {
     $selec = $_POST['Alumnos'];
 }
 
-function MostrarFormulario($dni)  // Función que muestra un formulario de actualización para el alumno con ese DNI
+// Función que muestra un formulario de actualización para el alumno con ese DNI
+function MostrarFormulario($dni)
 {
+    // Hacer global la variable $dao para poder usarla dentro de la función
     global $dao;
+
     $nombre = "";
     $apellido1 = "";
     $apellido2 = "";
@@ -32,6 +37,7 @@ function MostrarFormulario($dni)  // Función que muestra un formulario de actua
     $edad = $alumno->__get('Edad');
     $telefono = $alumno->__get('Telefono');
 
+
     echo "<fieldset>";
     echo "<legend>Datos del alumno con Dni:$dni</legend>";
     echo "<label for='nombre'><b>nombre </b></label><input type='text' name='nombres[$dni]' value='$nombre'><br>
@@ -44,14 +50,18 @@ function MostrarFormulario($dni)  // Función que muestra un formulario de actua
     echo "</fieldset>";
 }
 
+
+
 if (isset($_POST['Actualizar'])  && isset($selec))   //Si hemos pulsado actualizar y hay elementos seleccionados
 {
-    //Recogemos los arrays con los nombres, apellidos, edades y teléfonos
+    //REcogemos los arrays con los nombres, apellidos, edades y teléfonos
+
     $nombres = $_POST['nombres'];
     $apellidos1 = $_POST['apellidos1'];
     $apellidos2 = $_POST['apellidos2'];
     $edads =     $_POST['edads'];
     $telefonos = $_POST['telefonos'];
+
 
     foreach ($selec as $clave => $valor)    //Para cada uno de los alumnos seleccionados
     {
@@ -69,11 +79,15 @@ if (isset($_POST['Actualizar'])  && isset($selec))   //Si hemos pulsado actualiz
 }
 ?>
 
+
 <body>
+
     <form name='f1' action='<?php echo $_SERVER['PHP_SELF']; ?>' method='post'>
         <fieldset>
             <legend>Listado de alumnos</legend>
+
             <input type="submit" name='Seleccionar' value='Seleccionar'>
+
             <table border='2'>
                 <th>Selec</th>
                 <th>DNI</th>
@@ -85,12 +99,12 @@ if (isset($_POST['Actualizar'])  && isset($selec))   //Si hemos pulsado actualiz
 
                 <?php
                 $dao->listar();  //Listamos los alumnos
-
                 foreach ($dao->alumnos as $alu)   //Mostramos los alumnos listados dejando fijado el checkbox tras la recarga
                 {
                     if ((empty($selec)) || (!empty($selec) && array_key_exists($alu->__get("Dni"), $selec))) {
                         echo "<tr>";
                         echo "<td><input type='checkbox' name='Alumnos[" . $alu->__get("Dni") . "]'  ";
+
                         if (!empty($selec)) {
                             echo " checked ";
                         }
@@ -106,16 +120,15 @@ if (isset($_POST['Actualizar'])  && isset($selec))   //Si hemos pulsado actualiz
                     }
                 }
                 ?>
-
             </table>
         </fieldset>
 
         <?php
+
         if (isset($_POST['Seleccionar']))    //Si hemos pulsado el botón seleccionar
         {
             foreach ($selec as $clave => $valor)  //Para cada alumno seleccionado
             {
-
                 MostrarFormulario($clave);    //Mostramos su formulario de actualizacion
             }
             //Mostramos el botón de actualizar  solo si hay formularios de actualizados
